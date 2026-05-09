@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Trust Solutions | Consultoria de Tecnologia</title>
+    <meta name="description"
+        content="IT Trust Solutions - Transformando Tecnologia em Resultados. Consultoria de tecnologia com foco em desenvolvimento de sistemas.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#empresa" class="logo">
+                <i class="fa-solid fa-code-branch"></i>
+                IT Trust Solutions
+            </a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="#empresa" class="nav-link">Empresa</a></li>
+                <li><a href="#sobre" class="nav-link">Quem Somos</a></li>
+                <li><a href="#solucoes" class="nav-link">Soluções</a></li>
+                <li><a href="#contato" class="nav-link btn-outline">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header id="empresa" class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in-up">Transformando Tecnologia em <span class="highlight">Resultados</span></h1>
+            <p class="fade-in-up delay-1">Consultoria especializada em desenvolvimento de sistemas modernos, escaláveis
+                e sob medida para o seu negócio.</p>
+            <div class="hero-buttons fade-in-up delay-2">
+                <a href="#solucoes" class="btn btn-primary">Nossas Soluções</a>
+                <a href="#contato" class="btn btn-secondary">Fale Conosco</a>
+            </div>
+        </div>
+
+        <div class="container stats-container fade-in-up delay-3">
+            <div class="stat-item">
+                <h3 class="counter" data-target="150">0</h3>
+                <p>Projetos Entregues</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="98">0</h3><span>%</span>
+                <p>Satisfação</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="15">0</h3><span>+</span>
+                <p>Anos de Experiência</p>
+            </div>
+        </div>
+
+        <!-- Dynamic Waves -->
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#ffffff" />
+                </g>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Quem Somos -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Quem Somos</h2>
+                <div class="underline"></div>
+                <p>Conheça a história e os valores que movem a IT Trust Solutions.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text slide-in-left">
+                    <h3>Nossa História</h3>
+                    <p>Fundada com o propósito de descomplicar a tecnologia, a IT Trust Solutions atua como uma parceira
+                        estratégica para empresas que buscam inovação e eficiência. Nossa jornada é marcada por soluções
+                        que geram impacto real nos resultados dos nossos clientes.</p>
+
+                    <div class="mission-vision">
+                        <div class="mv-card">
+                            <i class="fa-solid fa-bullseye icon-blue"></i>
+                            <h4>Missão</h4>
+                            <p>Entregar soluções tecnológicas de excelência que impulsionem o crescimento de nossos
+                                clientes.</p>
+                        </div>
+                        <div class="mv-card">
+                            <i class="fa-solid fa-eye icon-blue"></i>
+                            <h4>Visão</h4>
+                            <p>Ser referência nacional em engenharia de software e transformação digital.</p>
+                        </div>
+                        <div class="mv-card">
+                            <i class="fa-solid fa-gem icon-blue"></i>
+                            <h4>Valores</h4>
+                            <p>Inovação, Transparência, Comprometimento e Qualidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-timeline slide-in-right">
+                    <h3>Nossa Trajetória</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>2015</h4>
+                                <p>Fundação da IT Trust Solutions</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>2018</h4>
+                                <p>Expansão para soluções Cloud e Mobile</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>2022</h4>
+                                <p>Marco de 100 projetos enterprise entregues</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4>Hoje</h4>
+                                <p>Liderando inovações em IA e Automação (RPA)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipe -->
+            <div class="team-section mt-5">
+                <h3 class="text-center mb-4">Nossa Liderança</h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300"
+                            alt="CEO">
+                        <div class="team-info">
+                            <h4>Carlos Silva</h4>
+                            <p>CEO & Fundador</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300"
+                            alt="CTO">
+                        <div class="team-info">
+                            <h4>Mariana Costa</h4>
+                            <p>CTO</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=300&h=300"
+                            alt="Tech Lead">
+                        <div class="team-info">
+                            <h4>Roberto Almeida</h4>
+                            <p>Tech Lead</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soluções -->
+    <section id="solucoes" class="section bg-light">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Nossas Soluções</h2>
+                <div class="underline"></div>
+                <p>Tecnologia de ponta desenhada para resolver os desafios do seu negócio.</p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3>Sistemas Web Customizados</h3>
+                    <p>Desenvolvimento de plataformas web responsivas, escaláveis e seguras, adaptadas aos seus
+                        processos.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3>Aplicativos Mobile</h3>
+                    <p>Apps nativos e híbridos com interfaces modernas e foco na melhor experiência do usuário (UX/UI).
+                    </p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3>RPA & Automação</h3>
+                    <p>Automação de processos robóticos para reduzir custos e eliminar tarefas manuais repetitivas.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3>Cloud & Integrações</h3>
+                    <p>Migração para nuvem e integração de sistemas via APIs robustas e seguras.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Soluções Personalizadas</h3>
+                    <p>Desenvolvimento de soluções sob medida para áreas específicas e necessidades únicas do seu negócio.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <div class="cta-box">
+                    <h3>Pronto para transformar sua empresa?</h3>
+                    <p>Faça um orçamento detalhado em poucos passos.</p>
+                    <button class="btn btn-primary btn-large mt-3" id="btn-open-wizard">Solicitar Orçamento</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="section">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>Fale Conosco</h2>
+                <div class="underline"></div>
+                <p>Estamos prontos para ouvir você. Entre em contato.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contato@ittrust.com.br</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 92090-0742</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Rua João Massaia, 210 - Laranjeiras<br>Caieiras - SP, 01310-100</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                    </div>
+
+                    <div class="map-placeholder mt-4"
+                        style="overflow:hidden; border-radius:12px; box-shadow: var(--shadow-sm);">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1486445582236!2d-46.7181316!3d-23.3958282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua%20Jo%C3%A3o%20Massaia%2C%20210%20-%20Laranjeiras%2C%20Caieiras%20-%20SP%2C%2007744-000!5e0!3m2!1spt-BR!2sbr!4v1715200000000!5m2!1spt-BR!2sbr"
+                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="contact-form" class="form">
+                        <div class="form-group">
+                            <label for="c_nome">Nome Completo</label>
+                            <input type="text" id="c_nome" required placeholder="Seu nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="c_email">Email</label>
+                            <input type="email" id="c_email" required placeholder="seu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="c_telefone">Telefone</label>
+                            <input type="text" id="c_telefone" required placeholder="(11) 99999-9999"
+                                class="phone-mask">
+                        </div>
+                        <div class="form-group">
+                            <label for="c_mensagem">Mensagem</label>
+                            <textarea id="c_mensagem" rows="5" required placeholder="Como podemos ajudar?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar Mensagem <i
+                                class="fa-solid fa-paper-plane ml-2"></i></button>
+                        <div id="contact-msg" class="mt-2"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#empresa" class="logo">
+                    <i class="fa-solid fa-code-branch"></i> IT Trust Solutions
+                </a>
+                <p class="mt-2">Transformando Tecnologia em Resultados com soluções modernas e eficientes.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#empresa">Empresa</a></li>
+                    <li><a href="#sobre">Quem Somos</a></li>
+                    <li><a href="#solucoes">Soluções</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 IT Trust Solutions. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WIZARD MODAL -->
+    <div class="modal-overlay" id="wizard-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Solicitação de Orçamento</h2>
+                <button class="close-btn" id="close-wizard"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="wizard-container">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <div class="step-circles">
+                        <div class="circle active" data-step="1">1</div>
+                        <div class="circle" data-step="2">2</div>
+                        <div class="circle" data-step="3">3</div>
+                        <div class="circle" data-step="4">4</div>
+                    </div>
+                </div>
+
+                <form id="wizard-form">
+                    <!-- STEP 1 -->
+                    <div class="step-content active" id="step-1">
+                        <h3>1. Dados da Empresa</h3>
+                        <div class="form-group">
+                            <label for="w_empresa">Nome da Empresa <span class="required">*</span></label>
+                            <input type="text" id="w_empresa" required placeholder="Razão Social ou Nome Fantasia">
+                        </div>
+                        <div class="form-group">
+                            <label for="w_cnpj">CNPJ</label>
+                            <input type="text" id="w_cnpj" class="cnpj-mask" placeholder="00.000.000/0000-00">
+                        </div>
+                        <div class="form-group">
+                            <label for="w_nome_contato">Nome do Contato <span class="required">*</span></label>
+                            <input type="text" id="w_nome_contato" required placeholder="Pessoa responsável">
+                        </div>
+                        <div class="form-group">
+                            <label for="w_celular">Celular</label>
+                            <input type="text" id="w_celular" class="phone-mask" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="wizard-actions">
+                            <div></div>
+                            <button type="button" class="btn btn-primary btn-next">Avançar <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="step-content" id="step-2">
+                        <h3>2. Segmento e Necessidade</h3>
+                        <div class="form-group">
+                            <label for="w_segmento">Segmento da Empresa</label>
+                            <select id="w_segmento">
+                                <option value="">Selecione um segmento</option>
+                                <option value="Varejo">Varejo</option>
+                                <option value="Indústria">Indústria</option>
+                                <option value="Saúde">Saúde</option>
+                                <option value="Educação">Educação</option>
+                                <option value="Financeiro">Financeiro</option>
+                                <option value="Logística">Logística</option>
+                                <option value="Agronegócio">Agronegócio</option>
+                                <option value="Serviços">Serviços</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="w_problema">Descreva o problema a ser resolvido ou objetivo do sistema <span
+                                    class="required">*</span></label>
+                            <textarea id="w_problema" rows="4" minlength="100" required
+                                placeholder="Detalhe a necessidade principal. (Mínimo 100 caracteres)"></textarea>
+                            <small class="char-counter"><span id="char-count">0</span> / Mín. 100</small>
+                        </div>
+                        <div class="wizard-actions">
+                            <button type="button" class="btn btn-outline btn-prev"><i
+                                    class="fa-solid fa-arrow-left"></i> Voltar</button>
+                            <button type="button" class="btn btn-primary btn-next">Avançar <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="step-content" id="step-3">
+                        <h3>3. Detalhes do Sistema</h3>
+                        <div class="form-group">
+                            <label for="w_funcionalidades">Descreva os campos e funcionalidades do sistema
+                                proposto</label>
+                            <textarea id="w_funcionalidades" rows="4"
+                                placeholder="Ex: Cadastro de clientes, controle de estoque, emissão de nf..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="w_regras">Regras de negócio e módulos do sistema</label>
+                            <textarea id="w_regras" rows="4"
+                                placeholder="Ex: O estoque não pode ficar negativo, comissionamento de 5%..."></textarea>
+                        </div>
+                        <div class="wizard-actions">
+                            <button type="button" class="btn btn-outline btn-prev"><i
+                                    class="fa-solid fa-arrow-left"></i> Voltar</button>
+                            <button type="button" class="btn btn-primary btn-next">Avançar <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="step-content" id="step-4">
+                        <h3>4. Tipo de Solução e Confirmação</h3>
+                        <div class="form-group checkbox-group">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="w_dashboard">
+                                <span class="checkmark"></span>
+                                O sistema terá Dashboard/relatórios?
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipos de Solução (selecione 1 ou mais):</label>
+                            <div class="checkbox-list">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="w_tipo_solucao" value="Sistema Web">
+                                    <span class="checkmark"></span>
+                                    Sistema Web
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="w_tipo_solucao" value="Aplicativo Mobile">
+                                    <span class="checkmark"></span>
+                                    Aplicativo Mobile
+                                </label>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" name="w_tipo_solucao" value="RPA/Automação">
+                                    <span class="checkmark"></span>
+                                    RPA/Automação
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="wizard-summary mt-4">
+                            <h4>Resumo do Pedido</h4>
+                            <div id="summary-content" class="summary-box">
+                                <!-- Populated via JS -->
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group mt-3">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="w_confirmo" required>
+                                <span class="checkmark"></span>
+                                Li e confirmo todas as informações acima <span class="required">*</span>
+                            </label>
+                        </div>
+
+                        <div id="wizard-error" class="text-danger mb-2" style="display: none;"></div>
+
+                        <div class="wizard-actions">
+                            <button type="button" class="btn btn-outline btn-prev"><i
+                                    class="fa-solid fa-arrow-left"></i> Voltar</button>
+                            <button type="submit" class="btn btn-success" id="btn-submit-wizard">Aceitar e Gerar
+                                Orçamento <i class="fa-solid fa-check"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- SUCCESS STATE -->
+                    <div class="step-content text-center py-5" id="step-success">
+                        <div class="success-icon mb-3">
+                            <i class="fa-regular fa-circle-check"
+                                style="font-size: 4rem; color: var(--success-color);"></i>
+                        </div>
+                        <h3>Orçamento Solicitado com Sucesso!</h3>
+                        <p>Recebemos suas informações. Seu número de protocolo é:</p>
+                        <div class="protocol-box my-3"
+                            style="font-size: 1.5rem; font-weight: bold; background: var(--bg-light); padding: 1rem; border-radius: 8px;">
+                            <strong id="protocol-number">---</strong>
+                        </div>
+                        <p>Nossa equipe analisará os dados e entrará em contato em breve.</p>
+                        <button type="button" class="btn btn-primary mt-4" id="btn-finish-wizard">Fechar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+
+</html>
