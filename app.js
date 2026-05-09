@@ -313,8 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             problema: document.getElementById('w_problema').value,
             funcionalidades: document.getElementById('w_funcionalidades').value,
             regras: document.getElementById('w_regras').value,
-            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value),
-            data_solicitacao: new Date().toISOString()
+            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value)
         };
 
         // Generate Protocol (ANO+MES+ID_Aleatorio)
