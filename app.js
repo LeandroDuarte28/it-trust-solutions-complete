@@ -313,7 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
             problema: document.getElementById('w_problema').value,
             funcionalidades: document.getElementById('w_funcionalidades').value,
             regras: document.getElementById('w_regras').value,
-            dashboard: document.getElementById('w_dashboard').checked,
             tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value),
             data_solicitacao: new Date().toISOString()
         };
@@ -348,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('protocol-number').innerText = protocolo;
 
         } catch (error) {
-            console.error('Erro ao salvar orçamento:', error);
+            console.error('Erro ao salvar proposta:', error);
             const err = document.getElementById('wizard-error');
             err.style.display = 'block';
             err.innerText = "Erro ao enviar solicitação. Tente novamente mais tarde.";

@@ -1,11 +1,11 @@
 # IT Trust Solutions - Documentação do Projeto
 
 ## Visão Geral
-Este projeto consiste no desenvolvimento de um site institucional completo para a empresa de consultoria de tecnologia **IT Trust Solutions**. O site apresenta um design moderno, focado em conversão e usabilidade, integrando um assistente de solicitação de orçamento (Wizard) de múltiplas etapas conectado a um backend Supabase.
+Este projeto consiste no desenvolvimento de um site institucional completo para a empresa de consultoria de tecnologia **IT Trust Solutions**. O site apresenta um design moderno, focado em conversão e usabilidade, integrando um assistente de solicitação de proposta (Wizard) de múltiplas etapas conectado a um backend Supabase.
 
 ## Arquitetura e Tecnologias
 - **Frontend:** HTML5 semântico, CSS3 (Vanilla com variáveis CSS e keyframes) e JavaScript (Vanilla).
-- **Backend/Banco de Dados:** Supabase (PostgreSQL) para armazenamento das solicitações de orçamento via Wizard e formulários de contato.
+- **Backend/Banco de Dados:** Supabase (PostgreSQL) para armazenamento das solicitações de proposta via Wizard e formulários de contato.
 - **Design:** Responsivo (Mobile-First), paleta de cores centrada em tons de azul e efeitos dinâmicos de interface.
 - **Ícones e Tipografia:** FontAwesome e Google Fonts (Inter).
 
@@ -37,7 +37,7 @@ Este projeto consiste no desenvolvimento de um site institucional completo para 
 - Embed do Google Maps contendo o endereço da sede.
 - Formulário de contato direto para envio de dúvidas rápidas.
 
-### 5. Wizard de Orçamento (Multi-step)
+### 5. Wizard de Proposta (Multi-step)
 - Modal sobreposto à tela principal contendo 4 etapas claras:
   1. **Dados da Empresa:** Identificação, CNPJ e contato responsável.
   2. **Segmento e Necessidade:** Escolha do ramo de atuação e descrição textual mínima do problema.
@@ -45,11 +45,13 @@ Este projeto consiste no desenvolvimento de um site institucional completo para 
   4. **Confirmação:** Tipo de plataforma desejada (Web, Mobile, RPA), necessidade de dashboards, aceite das informações e envio.
 - Barra de progresso interativa calculada em tempo real.
 - Integração funcional com o **Supabase** para salvar o payload completo.
-- Geração automática de **Número de Protocolo** em tela de sucesso exclusiva, fornecendo ao usuário um recibo formal do seu pedido de orçamento.
+- Geração automática de **Número de Protocolo** em tela de sucesso exclusiva, fornecendo ao usuário um recibo formal do seu pedido de proposta.
 
 ## Atualizações Recentes (Refatorações)
 1. **Ondas Dinâmicas:** Implementação de SVGs escaláveis na classe `.waves-container` dentro do `.hero`. Animado usando a diretiva `animation: move-forever` em múltiplos elementos `<use>` para criar o efeito contínuo de ondas.
 2. **Serviço Personalizado:** Inserção do card "Soluções Personalizadas" de forma harmônica na grade CSS da seção "Soluções".
+3. **Correção de Erro e Nomenclatura:** Correção de um erro de persistência removendo o campo `dashboard` e atualização da nomenclatura de "Orçamento" para "Proposta" em todo o sistema.
+4. **Atualização Visual Modernizada:** Refinamento do `style.css` para um visual mais contemporâneo e atrativo.
 
 ## Testes e Ambiente Local
 - Para visualizar e editar o projeto, execute um servidor local simples (ex: `npx http-server` ou Live Server do VSCode) na pasta raiz.
