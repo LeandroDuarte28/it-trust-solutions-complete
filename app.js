@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //const SUPABASE_KEY = 'SUPABASE_KEY_AQUI';
 
     const SUPABASE_URL = 'https://kcyxgolqpxyxalxoxvwp.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_-CzTEElN0_DkiximLE2dwA_jmpmZMgj';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjeXhnb2xxcHh5eGFseG94dndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyOTMwMjQsImV4cCI6MjA5Mzg2OTAyNH0.aiSoFiffjrx2WOW-7D6cpPxwmW1iVW-sNLY5wxkkH1E';
 
     let supabase = null;
     if (typeof window.supabase !== 'undefined') {
         try {
             supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        } catch(e) {
+        } catch (e) {
             console.error("Erro ao iniciar Supabase:", e);
         }
     }
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             problema: document.getElementById('w_problema').value,
             funcionalidades: document.getElementById('w_funcionalidades').value,
             regras: document.getElementById('w_regras').value,
-            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value)
+            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value).join(', ')
         };
 
         // Generate Protocol (ANO+MES+ID_Aleatorio)

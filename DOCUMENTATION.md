@@ -50,7 +50,7 @@ Este projeto consiste no desenvolvimento de um site institucional completo para 
 ## Atualizações Recentes (Refatorações)
 1. **Ondas Dinâmicas:** Implementação de SVGs escaláveis na classe `.waves-container` dentro do `.hero`. Animado usando a diretiva `animation: move-forever` em múltiplos elementos `<use>` para criar o efeito contínuo de ondas.
 2. **Serviço Personalizado:** Inserção do card "Soluções Personalizadas" de forma harmônica na grade CSS da seção "Soluções".
-3. **Correção de Erro e Nomenclatura:** Correção de um erro de persistência removendo o campo `dashboard` e atualização da nomenclatura de "Orçamento" para "Proposta" em todo o sistema.
+3. **Correção de Erro e Nomenclatura:** Correção de um erro de persistência removendo o campo `dashboard` e `data_solicitacao`, adequação do campo `tipo_solucao` para string e atualização da nomenclatura de "Orçamento" para "Proposta" em todo o sistema.
 4. **Atualização Visual Modernizada:** Refinamento do `style.css` para um visual mais contemporâneo e atrativo.
 
 ## Testes e Ambiente Local
