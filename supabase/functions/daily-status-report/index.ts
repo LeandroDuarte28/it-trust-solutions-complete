@@ -7,7 +7,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const RECIPIENT_EMAIL = "tecnologia.duarte@gmail.com";
 const SITE_URL = Deno.env.get("SITE_URL") || "https://www.ittrust.com.br";
 const VERCEL_URL = Deno.env.get("VERCEL_URL") || "https://it-trust-solutions-complete.vercel.app";
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "re_ByMzy4Xr_HN6TvaEnjAtidp5zk2Lkswuk";
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") ?? "";
 
 serve(async (req) => {
   try {
