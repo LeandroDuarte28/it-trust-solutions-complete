@@ -327,18 +327,46 @@ document.addEventListener('DOMContentLoaded', () => {
         data.protocolo = protocolo;
 
         try {
-            // Check if supabase is initialized
-            if (SUPABASE_URL === 'SUPABASE_URL_AQUI' || !supabase) {
-                // Mock success for demonstration if no credentials
+            // Check if supabase credentials exist
+            if (SUPABASE_URL === 'SUPABASE_URL_AQUI') {
                 console.warn('Supabase não configurado. Simulando envio bem-sucedido...');
                 await new Promise(resolve => setTimeout(resolve, 1500));
             } else {
-                // Real Supabase Insert
-                const { error } = await supabase
-                    .from('orcamentos')
-                    .insert([data]);
+                // Endpoint REST com apikey garantida na URL e nos Headers para evitar bloqueios de extensões
+                const endpoint = `${SUPABASE_URL}/rest/v1/orcamentos?apikey=${SUPABASE_KEY}`;
+                
+                let res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(data)
+                });
 
-                if (error) throw error;
+                // Fallback automático se a coluna 'status' ainda não tiver sido criada no banco
+                if (!res.ok) {
+                    const errBody = await res.json().catch(() => ({}));
+                    if (errBody && (errBody.code === '42703' || errBody.code === 'PGRST204')) {
+                        console.warn("Coluna 'status' ausente no banco. Enviando proposta sem o campo status...");
+                        const { status, ...dataWithoutStatus } = data;
+                        res = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'apikey': SUPABASE_KEY,
+                                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                                'Content-Type': 'application/json',
+                                'Prefer': 'return=minimal'
+                            },
+                            body: JSON.stringify(dataWithoutStatus)
+                        });
+                    }
+                    if (!res.ok) {
+                        throw new Error(errBody.message || "Erro ao gravar no Supabase");
+                    }
+                }
             }
 
             // Show Success State

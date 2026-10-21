@@ -1,6 +1,18 @@
 const fs = require('fs');
+const path = require('path');
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_ByMzy4Xr_HN6TvaEnjAtidp5zk2Lkswuk';
+// Carregar variáveis do .env local (ignorado pelo Git)
+if (fs.existsSync(path.join(__dirname, '.env'))) {
+  const envContent = fs.readFileSync(path.join(__dirname, '.env'), 'utf8');
+  for (const line of envContent.split('\n')) {
+    const [key, ...vals] = line.trim().split('=');
+    if (key && vals.length > 0) {
+      process.env[key] = vals.join('=');
+    }
+  }
+}
+
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const RECIPIENT_EMAIL = 'tecnologia.duarte@gmail.com';
 const SUPABASE_URL = 'https://kcyxgolqpxyxalxoxvwp.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjeXhnb2xxcHh5eGFseG94dndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyOTMwMjQsImV4cCI6MjA5Mzg2OTAyNH0.aiSoFiffjrx2WOW-7D6cpPxwmW1iVW-sNLY5wxkkH1E';
