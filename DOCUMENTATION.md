@@ -1,71 +1,68 @@
-# IT Trust Solutions - Documentação do Projeto
+# IT Trust Solutions — Documentação do Projeto
 
-## Visão Geral
-Este projeto consiste no desenvolvimento de um site institucional completo para a empresa de consultoria de tecnologia **IT Trust Solutions**. O site apresenta um design moderno, focado em conversão e usabilidade, integrando um assistente de solicitação de proposta (Wizard) de múltiplas etapas conectado a um backend Supabase.
-
-## Arquitetura e Tecnologias
-- **Frontend:** HTML5 semântico, CSS3 (Vanilla com variáveis CSS e keyframes) e JavaScript (Vanilla).
-- **Hospedagem e Backend / Banco de Dados:** Hospedado com integração no **Supabase** (PostgreSQL) para armazenamento das solicitações de proposta via Wizard e formulários de contato.
-  - **Endpoint / URL do Banco:** `https://kcyxgolqpxyxalxoxvwp.supabase.co`
-  - **Conta de Acesso (Dashboard Supabase):** Login via GitHub utilizando o e-mail `tecnologia.duarte@gmail.com`.
-- **Design:** Responsivo (Mobile-First), paleta de cores centrada em tons de azul e efeitos dinâmicos de interface.
-- **Ícones e Tipografia:** FontAwesome e Google Fonts (Inter).
-
-## Funcionalidades Implementadas
-
-### 1. Navegação e Hero Section
-- Navbar fixa com efeito "glassmorphism" (desfoque e transparência), menus de ancoragem para rolagem suave.
-- Menu responsivo estilo "hamburger" para dispositivos móveis.
-- Seção Hero (Header) projetada para alto impacto visual, contendo:
-  - Título principal com palavras em destaque (azul elétrico).
-  - Subtítulo focado em valor (consultoria especializada).
-  - Botões de Call to Action (CTA) diretos.
-  - Indicadores estáticos/animados (Projetos entregues, Satisfação, Experiência).
-  - **Novo:** Efeito dinâmico de ondas (Waves) em SVG implementado com animação infinita via CSS (`@keyframes`) na base da seção hero, inspirado no padrão de design Stitch.
-
-### 2. Quem Somos (Empresa)
-- Apresentação da missão, visão e valores através de cards interativos.
-- Linha do tempo visual (Timeline) contando a trajetória desde 2015 até o momento atual com foco em RPA e IA.
-- Seção de Liderança (Equipe) com cards exibindo foto e cargo dos diretores.
-
-### 3. Nossas Soluções
-- Grid responsivo de cards destacando os principais serviços.
-- **Novo:** Adicionado o serviço de **"Soluções Personalizadas"** com foco no desenvolvimento sob medida para áreas específicas, complementando os serviços existentes (Sistemas Web, App Mobile, RPA e Cloud).
-- Efeitos hover aprimorados que preenchem o fundo do cartão de baixo para cima ao interagir com o mouse.
-
-### 4. Fale Conosco
-- Informações de contato (Email, Telefone, Endereço).
-- Links para redes sociais.
-- Embed do Google Maps contendo o endereço da sede.
-- Formulário de contato direto para envio de dúvidas rápidas.
-
-### 5. Wizard de Proposta (Multi-step)
-- Modal sobreposto à tela principal contendo 4 etapas claras:
-  1. **Dados da Empresa:** Identificação, CNPJ e contato responsável.
-  2. **Segmento e Necessidade:** Escolha do ramo de atuação e descrição textual mínima do problema.
-  3. **Detalhes do Sistema:** Funcionalidades esperadas e regras de negócio.
-  4. **Confirmação:** Tipo de plataforma desejada (Web, Mobile, RPA), necessidade de dashboards, aceite das informações e envio.
-- Barra de progresso interativa calculada em tempo real.
-- Integração funcional com o **Supabase** para salvar o payload completo.
-- Geração automática de **Número de Protocolo** em tela de sucesso exclusiva, fornecendo ao usuário um recibo formal do seu pedido de proposta.
-
-## Atualizações Recentes (Refatorações)
-1. **Ondas Dinâmicas:** Implementação de SVGs escaláveis na classe `.waves-container` dentro do `.hero`. Animado usando a diretiva `animation: move-forever` em múltiplos elementos `<use>` para criar o efeito contínuo de ondas.
-2. **Serviço Personalizado:** Inserção do card "Soluções Personalizadas" de forma harmônica na grade CSS da seção "Soluções".
-3. **Correção de Erro e Nomenclatura:** Correção de um erro de persistência removendo o campo `dashboard` e `data_solicitacao`, adequação do campo `tipo_solucao` para string e atualização da nomenclatura de "Orçamento" para "Proposta" em todo o sistema.
-5. **Fotos Humanizadas da Equipe:** Substituição dos avatares conceituais/futuristas por retratos corporativos realistas e modernos da equipe técnica (IA, Cloud e Segurança).
-6. **Controle de Status nas Propostas:** Inclusão do campo `status` na tabela `orcamentos` (`Pendente` e `Respondido`), sendo gravado automaticamente como `'Pendente'` na submissão pelo site.
-7. **Relatório Diário Automatizado (08:00 BRT):** Implementação da Edge Function `daily-status-report` (e cron via `pg_cron` / GitHub Actions) enviando para `tecnologia.duarte@gmail.com` a saúde dos serviços (Vercel, Supabase, Site) e o relatório analítico dos orçamentos pendentes.
-
-## Configuração e Acesso ao Supabase
-- **Hospedagem / Backend:** O site utiliza os serviços do **Supabase** como infraestrutura de banco de dados e backend.
-- **URL da Instância / Banco:** `https://kcyxgolqpxyxalxoxvwp.supabase.co`
-- **Conta de Acesso ao Dashboard:** Login realizado via GitHub com a conta associada ao e-mail `tecnologia.duarte@gmail.com`.
-- **Tabela Principal:** `orcamentos` (armazena os dados do Wizard com campos: `empresa`, `cnpj`, `contato`, `celular`, `segmento`, `problema`, `funcionalidades`, `regras`, `tipo_solucao`, `protocolo`, `status` [Pendente|Respondido]).
-- **Rotinas Diárias:**
-  - Migração SQL: `supabase/migrations/20261020_add_status_and_cron.sql`
-  - Edge Function: `supabase/functions/daily-status-report/index.ts`
-  - GitHub Actions: `.github/workflows/daily-report.yml`
+## 1. Visão Geral
+Este repositório contém o código-fonte e as rotinas de automação do portal institucional da **IT Trust Solutions**, empresa especializada em consultoria de tecnologia, modernização em nuvem, cibersegurança e inteligência artificial. O site foi projetado com foco em alta conversão B2B, apresentando design moderno, carregamento ultrarrápido sem dependência de frameworks pesados e um assistente guiado de propostas (Wizard) de múltiplas etapas integrado ao Supabase.
 
 ---
-*Documentação atualizada em: Outubro de 2026*
+
+## 2. Endereços Oficiais e Ambientes
+
+| Serviço / Ambiente | Endereço / Identificador | Observações |
+| :--- | :--- | :--- |
+| **Repositório GitHub** | [https://github.com/LeandroDuarte28/it-trust-solutions-complete](https://github.com/LeandroDuarte28/it-trust-solutions-complete) | Repositório Público, branches `main` e `master` sincronizadas |
+| **Site em Produção** | [https://www.ittrust.com.br](https://www.ittrust.com.br) | Domínio principal configurado na Vercel |
+| **Deploy Canônico Vercel** | [https://it-trust-solutions-complete.vercel.app](https://it-trust-solutions-complete.vercel.app) | URL de contingência / preview Vercel |
+| **Backend / Supabase REST** | `https://kcyxgolqpxyxalxoxvwp.supabase.co` | Instância PostgreSQL no Supabase Cloud |
+| **Painel Supabase** | Login via GitHub (`tecnologia.duarte@gmail.com`) | Dashboard administrativo e SQL Editor |
+| **Serviço de E-mail (Resend)** | `https://resend.com` | E-mails transacionais e monitoramento diário |
+
+---
+
+## 3. Arquitetura e Tecnologias
+- **Frontend:** HTML5 semântico, CSS3 Moderno (Variáveis customizadas, Glassmorphism, Waves em SVG animado via CSS `@keyframes move-forever`), JavaScript Vanilla puro (zero runtime overhead).
+- **Invalidação de Cache:** Parâmetro de versão em script (`app.js?v=20261021_0835`) para forçar atualização imediata nos navegadores dos clientes.
+- **Backend & Banco de Dados:** Supabase (PostgreSQL), consumo via PostgREST direto com autenticação simultânea em cabeçalho (`apikey`, `Authorization`) e parâmetro de URL (`?apikey=...`), prevenindo bloqueios por adblockers ou proxies.
+- **Automação Diária:**
+  - Workflow GitHub Actions (`.github/workflows/daily-report.yml`) disparado diariamente às 08:00 BRT (11:00 UTC).
+  - Script Node.js de checagem de saúde e envio com Resend (`send_report_now.js`).
+  - Template de e-mail responsivo Mobile-First com cards individuais de propostas e badges de status (`email-preview.html`).
+
+---
+
+## 4. Estrutura do Banco de Dados (Supabase)
+Tabela principal: `orcamentos`
+
+- `id`: `uuid` (Primary Key, auto-gerado)
+- `created_at`: `timestamptz` (Timestamp de envio)
+- `empresa`: `text` (Nome da empresa)
+- `cnpj`: `text` (CNPJ formatado)
+- `contato`: `text` (Nome do responsável)
+- `celular`: `text` (Telefone/WhatsApp de contato)
+- `segmento`: `text` (Segmento de atuação da empresa)
+- `problema`: `text` (Descrição detalhada do desafio de TI, mín. 100 caracteres)
+- `funcionalidades`: `text` (Funcionalidades solicitadas)
+- `regras`: `text` (Regras de negócio e requisitos)
+- `tipo_solucao`: `text` (Lista de soluções marcadas no Wizard)
+- `protocolo`: `text` (Identificador único de protocolo no formato `YYYYMM-XXXX`)
+- `status`: `varchar(50)` (Status da proposta: `Pendente` ou `Respondido`)
+
+*Para adicionar a coluna status formalmente no SQL Editor do Supabase:*
+```sql
+ALTER TABLE orcamentos ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'Pendente';
+```
+
+---
+
+## 5. Equipe e Imagens Reais
+Na seção "Nossos Profissionais", os avatares conceituais foram substituídos por fotos corporativas realistas de alta definição:
+- **Sofia Mendonça** (Especialista em IA & Analytics): `assets/prof_ia_real.jpg`
+- **Carlos Drummond** (Arquiteto Cloud & DevOps): `assets/prof_cloud_real.jpg`
+- **Mariana Rios** (Líder em Cibersegurança & Governança): `assets/prof_security_real.jpg`
+
+---
+
+## 6. Histórico de Correções Críticas
+1. **Deploy Vercel:** Repositório tornado público para compatibilidade com o plano Hobby da Vercel.
+2. **Segurança de API Keys (Resend):** Chaves nunca são commitadas no Git (isoladas no `.env` e GitHub Secrets) para evitar revogação automática por scanners.
+3. **E-mail Mobile-First:** Substituição de tabelas largas por cards verticais com badges empilháveis para legibilidade perfeita no celular.
+4. **Erro "No API key found in request":** Refatoração da submissão do formulário no `app.js` para chamada REST direta com a `apikey` injetada na query string e headers, eliminação de script CDN legado e invalidação de cache.
