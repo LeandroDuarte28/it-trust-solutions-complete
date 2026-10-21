@@ -63,6 +63,12 @@
   - Localmente: `.env` (`RESEND_API_KEY=...`) — *ignorado pelo Git*
   - Produção/GitHub Actions: GitHub Secret `RESEND_API_KEY`
 
+### 2.5 Monitoramento e Métricas de Tráfego (Google Analytics 4)
+- **ID de Medição (Measurement ID):** `G-KWF2NR89KL`
+- **Tecnologia:** Google Tag (`gtag.js` via Google Tag Manager)
+- **Posicionamento:** Injetado diretamente logo após a abertura do `<head>` no `index.html`
+- **Finalidade:** Rastreamento em tempo real de visitantes, tráfego corporativo, engajamento com as soluções e conversões do Wizard de orçamentos.
+
 ---
 
 ## 3. Diagrama de Arquitetura do Sistema
@@ -71,6 +77,7 @@
 graph TD
     User["Visitante / Cliente Corporativo"] -->|Acessa www.ittrust.com.br| Vercel["Vercel CDN Edge"]
     Vercel -->|Serve HTML5 / CSS3 / JS| Browser["Navegador do Usuário"]
+    Browser -->|Dispara Telemetria & Eventos| GA["Google Analytics 4 (G-KWF2NR89KL)"]
     
     subgraph Frontend ["Frontend Estático"]
         Browser -->|Preenche 4 Passos| Wizard["Wizard de Propostas"]
