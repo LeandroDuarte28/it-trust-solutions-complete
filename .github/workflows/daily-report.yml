@@ -20,6 +20,6 @@ jobs:
 
       - name: Executar envio do relatório diário
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY || 're_ByMzy4Xr_HN6TvaEnjAtidp5zk2Lkswuk' }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
           node send_report_now.js
