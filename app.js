@@ -9,14 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const SUPABASE_URL = 'https://kcyxgolqpxyxalxoxvwp.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjeXhnb2xxcHh5eGFseG94dndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyOTMwMjQsImV4cCI6MjA5Mzg2OTAyNH0.aiSoFiffjrx2WOW-7D6cpPxwmW1iVW-sNLY5wxkkH1E';
 
-    let supabase = null;
-    if (typeof window.supabase !== 'undefined') {
-        try {
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        } catch (e) {
-            console.error("Erro ao iniciar Supabase:", e);
-        }
-    }
 
     /*================================================================
       2. UI & SCROLL BEHAVIORS
@@ -302,20 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const btnSubmit = document.getElementById('btn-submit-wizard');
         btnSubmit.classList.add('btn-loading');
-
-        // Collect all data
-        const data = {
-            empresa: document.getElementById('w_empresa').value,
-            cnpj: document.getElementById('w_cnpj').value,
-            contato: document.getElementById('w_nome_contato').value,
-            celular: document.getElementById('w_celular').value,
-            segmento: document.getElementById('w_segmento').value,
-            problema: document.getElementById('w_problema').value,
-            funcionalidades: document.getElementById('w_funcionalidades').value,
-            regras: document.getElementById('w_regras').value,
-            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value).join(', '),
-            status: 'Pendente'
-        };
+        btnSubmit.disabled = true;
 
         // Generate Protocol (ANO+MES+ID_Aleatorio)
         const date = new Date();
@@ -324,49 +303,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomId = Math.floor(1000 + Math.random() * 9000);
         const protocolo = `${ano}${mes}-${randomId}`;
 
-        data.protocolo = protocolo;
+        // Collect all data
+        const data = {
+            empresa: document.getElementById('w_empresa').value.trim(),
+            cnpj: document.getElementById('w_cnpj').value.trim(),
+            contato: document.getElementById('w_nome_contato').value.trim(),
+            celular: document.getElementById('w_celular').value.trim(),
+            segmento: document.getElementById('w_segmento').value.trim(),
+            problema: document.getElementById('w_problema').value.trim(),
+            funcionalidades: document.getElementById('w_funcionalidades').value.trim(),
+            regras: document.getElementById('w_regras').value.trim(),
+            tipo_solucao: Array.from(document.querySelectorAll('input[name="w_tipo_solucao"]:checked')).map(el => el.value).join(', '),
+            protocolo: protocolo
+        };
 
         try {
-            // Check if supabase credentials exist
-            if (SUPABASE_URL === 'SUPABASE_URL_AQUI') {
-                console.warn('Supabase não configurado. Simulando envio bem-sucedido...');
-                await new Promise(resolve => setTimeout(resolve, 1500));
-            } else {
-                // Endpoint REST com apikey garantida na URL e nos Headers para evitar bloqueios de extensões
-                const endpoint = `${SUPABASE_URL}/rest/v1/orcamentos?apikey=${SUPABASE_KEY}`;
-                
-                let res = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': `Bearer ${SUPABASE_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=minimal'
-                    },
-                    body: JSON.stringify(data)
-                });
+            // Endpoint REST direto com chave no header e na URL (garante autenticacao em qualquer cenario)
+            const endpoint = `${SUPABASE_URL}/rest/v1/orcamentos?apikey=${SUPABASE_KEY}`;
+            
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(data)
+            });
 
-                // Fallback automático se a coluna 'status' ainda não tiver sido criada no banco
-                if (!res.ok) {
-                    const errBody = await res.json().catch(() => ({}));
-                    if (errBody && (errBody.code === '42703' || errBody.code === 'PGRST204')) {
-                        console.warn("Coluna 'status' ausente no banco. Enviando proposta sem o campo status...");
-                        const { status, ...dataWithoutStatus } = data;
-                        res = await fetch(endpoint, {
-                            method: 'POST',
-                            headers: {
-                                'apikey': SUPABASE_KEY,
-                                'Authorization': `Bearer ${SUPABASE_KEY}`,
-                                'Content-Type': 'application/json',
-                                'Prefer': 'return=minimal'
-                            },
-                            body: JSON.stringify(dataWithoutStatus)
-                        });
-                    }
-                    if (!res.ok) {
-                        throw new Error(errBody.message || "Erro ao gravar no Supabase");
-                    }
-                }
+            if (!res.ok) {
+                const errBody = await res.json().catch(() => ({}));
+                console.error('Erro retornado pelo Supabase:', res.status, errBody);
+                throw new Error(errBody.message || `Erro ${res.status}`);
             }
 
             // Show Success State
@@ -378,9 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro ao salvar proposta:', error);
             const err = document.getElementById('wizard-error');
             err.style.display = 'block';
-            err.innerText = "Erro ao enviar solicitação. Tente novamente mais tarde.";
+            err.innerText = error.message ? `Erro ao enviar solicitação: ${error.message}` : "Erro ao enviar solicitação. Tente novamente mais tarde.";
         } finally {
             btnSubmit.classList.remove('btn-loading');
+            btnSubmit.disabled = false;
         }
     });
 
