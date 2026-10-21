@@ -5,7 +5,9 @@ Este projeto consiste no desenvolvimento de um site institucional completo para 
 
 ## Arquitetura e Tecnologias
 - **Frontend:** HTML5 semântico, CSS3 (Vanilla com variáveis CSS e keyframes) e JavaScript (Vanilla).
-- **Backend/Banco de Dados:** Supabase (PostgreSQL) para armazenamento das solicitações de proposta via Wizard e formulários de contato.
+- **Hospedagem e Backend / Banco de Dados:** Hospedado com integração no **Supabase** (PostgreSQL) para armazenamento das solicitações de proposta via Wizard e formulários de contato.
+  - **Endpoint / URL do Banco:** `https://kcyxgolqpxyxalxoxvwp.supabase.co`
+  - **Conta de Acesso (Dashboard Supabase):** Login via GitHub utilizando o e-mail `tecnologia.duarte@gmail.com`.
 - **Design:** Responsivo (Mobile-First), paleta de cores centrada em tons de azul e efeitos dinâmicos de interface.
 - **Ícones e Tipografia:** FontAwesome e Google Fonts (Inter).
 
@@ -51,11 +53,19 @@ Este projeto consiste no desenvolvimento de um site institucional completo para 
 1. **Ondas Dinâmicas:** Implementação de SVGs escaláveis na classe `.waves-container` dentro do `.hero`. Animado usando a diretiva `animation: move-forever` em múltiplos elementos `<use>` para criar o efeito contínuo de ondas.
 2. **Serviço Personalizado:** Inserção do card "Soluções Personalizadas" de forma harmônica na grade CSS da seção "Soluções".
 3. **Correção de Erro e Nomenclatura:** Correção de um erro de persistência removendo o campo `dashboard` e `data_solicitacao`, adequação do campo `tipo_solucao` para string e atualização da nomenclatura de "Orçamento" para "Proposta" em todo o sistema.
-4. **Atualização Visual Modernizada:** Refinamento do `style.css` para um visual mais contemporâneo e atrativo.
+5. **Fotos Humanizadas da Equipe:** Substituição dos avatares conceituais/futuristas por retratos corporativos realistas e modernos da equipe técnica (IA, Cloud e Segurança).
+6. **Controle de Status nas Propostas:** Inclusão do campo `status` na tabela `orcamentos` (`Pendente` e `Respondido`), sendo gravado automaticamente como `'Pendente'` na submissão pelo site.
+7. **Relatório Diário Automatizado (08:00 BRT):** Implementação da Edge Function `daily-status-report` (e cron via `pg_cron` / GitHub Actions) enviando para `tecnologia.duarte@gmail.com` a saúde dos serviços (Vercel, Supabase, Site) e o relatório analítico dos orçamentos pendentes.
 
-## Testes e Ambiente Local
-- Para visualizar e editar o projeto, execute um servidor local simples (ex: `npx http-server` ou Live Server do VSCode) na pasta raiz.
-- A funcionalidade completa do banco de dados depende do Supabase devidamente configurado com as chaves corretas no arquivo `app.js`.
+## Configuração e Acesso ao Supabase
+- **Hospedagem / Backend:** O site utiliza os serviços do **Supabase** como infraestrutura de banco de dados e backend.
+- **URL da Instância / Banco:** `https://kcyxgolqpxyxalxoxvwp.supabase.co`
+- **Conta de Acesso ao Dashboard:** Login realizado via GitHub com a conta associada ao e-mail `tecnologia.duarte@gmail.com`.
+- **Tabela Principal:** `orcamentos` (armazena os dados do Wizard com campos: `empresa`, `cnpj`, `contato`, `celular`, `segmento`, `problema`, `funcionalidades`, `regras`, `tipo_solucao`, `protocolo`, `status` [Pendente|Respondido]).
+- **Rotinas Diárias:**
+  - Migração SQL: `supabase/migrations/20261020_add_status_and_cron.sql`
+  - Edge Function: `supabase/functions/daily-status-report/index.ts`
+  - GitHub Actions: `.github/workflows/daily-report.yml`
 
 ---
-*Documentação atualizada em: Maio de 2026*
+*Documentação atualizada em: Outubro de 2026*
