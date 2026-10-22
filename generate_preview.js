@@ -135,8 +135,10 @@ async function run() {
   </html>
   `;
 
-  fs.writeFileSync('c:/Projetos/ITTrustSolutions/email-preview.html', html);
-  console.log('Preview gerado com sucesso em c:/Projetos/ITTrustSolutions/email-preview.html');
+  const path = require('path');
+  const previewPath = path.join(__dirname, 'email-preview.html');
+  fs.writeFileSync(previewPath, html);
+  console.log(`Preview gerado com sucesso em ${previewPath}`);
 }
 
 run();

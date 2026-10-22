@@ -13,6 +13,10 @@ if (fs.existsSync(path.join(__dirname, '.env'))) {
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
+if (!RESEND_API_KEY) {
+  console.error('ERRO: RESEND_API_KEY não encontrada nas variáveis de ambiente nem no .env');
+  process.exit(1);
+}
 const RECIPIENT_EMAIL = 'tecnologia.duarte@gmail.com';
 const SUPABASE_URL = 'https://kcyxgolqpxyxalxoxvwp.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjeXhnb2xxcHh5eGFseG94dndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyOTMwMjQsImV4cCI6MjA5Mzg2OTAyNH0.aiSoFiffjrx2WOW-7D6cpPxwmW1iVW-sNLY5wxkkH1E';
@@ -210,9 +214,14 @@ async function sendEmail() {
   </html>
   `;
 
-  // Salvar preview local atualizado
-  fs.writeFileSync('c:/Projetos/ITTrustSolutions/email-preview.html', html);
-  console.log('Arquivo email-preview.html atualizado.');
+  // Salvar preview local atualizado (compatível com Linux e Windows)
+  const previewPath = path.join(__dirname, 'email-preview.html');
+  try {
+    fs.writeFileSync(previewPath, html);
+    console.log('Arquivo email-preview.html atualizado.');
+  } catch (err) {
+    console.warn('Aviso: Não foi possível salvar email-preview.html:', err.message);
+  }
 
   console.log(`Disparando novo e-mail responsivo via Resend para ${RECIPIENT_EMAIL}...`);
   const response = await fetch('https://api.resend.com/emails', {

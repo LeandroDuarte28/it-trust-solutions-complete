@@ -168,6 +168,17 @@ Localizado no modal interativo com barra de progresso em tempo real:
   3. Remoção do campo `status` do payload frontend para sincronizar perfeitamente com as colunas ativas do PostgreSQL (o status agora assume o `DEFAULT 'Pendente'` automaticamente pelo banco).
   4. Sincronização obrigatória de ambas as branches (`git push origin main && git push origin main:master`).
 
+### Incidente 5: Falha no Disparo Automático do Relatório Diário no GitHub Actions
+- **Sintoma:** O e-mail automático das 08:00 com o status e propostas em aberto não foi recebido.
+- **Causa Raiz:**
+  1. Caminho de gravação de arquivo fixado com sintaxe Windows (`c:/Projetos/.../email-preview.html`) em `send_report_now.js`, causando falha fatal `ENOENT` no ambiente Linux do runner do GitHub Actions (`ubuntu-latest`).
+  2. A secret `RESEND_API_KEY` não estava provisionada nas configurações de Secrets do repositório no GitHub.
+- **Solução Definitiva:**
+  1. Substituição de caminhos absolutos locais por caminhos portáveis `path.join(__dirname, 'email-preview.html')` com tratamento seguro de exceções em bloco `try/catch`.
+  2. Adição de validação explícita no início da rotina Node.js para checar a presença da `RESEND_API_KEY`.
+  3. Provisionamento da secret `RESEND_API_KEY` diretamente nos Secrets de Actions do repositório no GitHub via API criptografada com libsodium.
+  4. Atualização da action para Node.js 22 LTS.
+
 ---
 
 ## 6. Mapeamento de Arquivos do Projeto
