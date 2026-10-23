@@ -136,8 +136,11 @@ Localizado no modal interativo com barra de progresso em tempo real:
 
 ### Incidente 1: Bloqueio de Deploy na Vercel (Hobby Plan)
 - **Sintoma:** *Deployment Blocked: The deployment was blocked because the commit author did not have contributing access to the project on Vercel. The Hobby Plan does not support collaboration for private repositories.*
-- **Causa Raiz:** O repositório estava configurado como privado no GitHub, e o plano gratuito da Vercel proíbe múltiplos contribuidores em repositórios privados.
-- **Solução Definitiva:** O usuário alterou a visibilidade do repositório no GitHub para **Público** (*Public*). Os deploys subsequentes foram liberados imediatamente.
+- **Causa Raiz:** O plano gratuito (Hobby) da Vercel suporta perfeitamente repositórios **privados**, porém bloqueia deploys se o autor dos commits (`user.email` do git) não corresponder ao e-mail cadastrado e verificado na conta do GitHub vinculada à Vercel. Nesses casos, a Vercel interpreta erroneamente o commit como vindo de um "colaborador externo", exigindo upgrade para o plano Pro ($20/mês).
+- **Solução Definitiva (100% Gratuita e Privada):**
+  1. Adicionar o e-mail utilizado nos commits locais (`tecnologia.duarte@gmail.com`) na lista de e-mails verificados da conta do GitHub (**Settings > Emails**) OU alinhar o `user.email` do git local com o e-mail GitHub (`82515067+LeandroDuarte28@users.noreply.github.com`).
+  2. Manter o repositório como **Privado** (*Private*) com total sigilo do código-fonte.
+  3. O Vercel Hobby reconhece o commit como pertencente ao proprietário da conta e realiza o build/deploy automático sem qualquer custo.
 
 ### Incidente 2: Revogação Automática da Chave Resend
 - **Sintoma:** E-mails falhavam com status 401 (*API Key revoked*).
